@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": true,
+    "lib": ["ESNext"]
+  },
+  "exclude": ["node_modules"],
+  "include": ["src"]
+}
