@@ -1,5 +1,5 @@
 {
   "*": "prettier --ignore-unknown --write",
   "*.{js,jsx,ts,tsx}": "eslint --fix",
-  "*.{ts,tsx}": "tsc --skipLibCheck --noEmit --strict --target es6 --lib esnext"
+  "*.{ts,tsx}": "tsc --skipLibCheck --noEmit --strict --target es6 --lib esnext,dom --moduleResolution node"
 }
