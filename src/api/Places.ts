@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { Place } from '../schemas/Place';
+import { PlaceAutocompletePrediction } from '../schemas/PlaceAutocompletePrediction';
 import { Base } from './Base';
 
 const PlacesSearchStatus = z.enum([
@@ -36,11 +37,26 @@ const PlaceDetailsResponse = z.object({
     info_messages: z.string().array().optional(),
 });
 
+const PlacesAutocompleteStatus = z.enum([
+    'OK',
+    'ZERO_RESULTS',
+    'INVALID_REQUEST',
+    'OVER_QUERY_LIMIT',
+    'REQUEST_DENIED',
+    'UNKNOWN_ERROR',
+]);
+
+const PlacesAutocompleteResponse = z.object({
+    predictions: PlaceAutocompletePrediction.array(),
+    status: PlacesAutocompleteStatus,
+    error_message: z.string().optional(),
+    info_messages: z.string().array().optional(),
+});
+
 const BasicDataSearchFields = z.enum([
     'business_status',
     'formatted_address',
-    'geometry/viewport',
-    'geometry/location',
+    'geometry',
     'icon',
     'icon_mask_base_uri',
     'icon_background_color',
@@ -157,6 +173,20 @@ class Places extends Base {
         const response = await this.callEndpoint('GET', 'place/photo', searchParams);
 
         return response.blob();
+    }
+
+    async autocomplete(
+        input: string,
+        radius: number = 50000
+    ): Promise<z.infer<typeof PlacesAutocompleteResponse>> {
+        const searchParams = new URLSearchParams();
+        searchParams.set('input', input);
+        searchParams.set('radius', String(radius));
+
+        const response = await this.callEndpoint('GET', 'place/autocomplete/json', searchParams);
+        const data = await response.json();
+
+        return PlacesAutocompleteResponse.parse(data);
     }
 }
 

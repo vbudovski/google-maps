@@ -28,7 +28,7 @@
     "zod": "^3.22.2"
   },
   "scripts": {
-    "test": "jest",
+    "test": "NODE_OPTIONS=\"--experimental-fetch\" jest",
     "format": "prettier --write \"**/*.{ts,tsx,md,json,yaml}\"",
     "check-types": "tsc -b",
     "lint": "eslint src",

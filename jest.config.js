@@ -22,6 +22,8 @@ const config = {
     transform: {
         '^.+\\.(t|j)sx?$': '@swc/jest',
     },
+
+    setupFilesAfterEnv: ['dotenv/config'],
 };
 
 export default config;

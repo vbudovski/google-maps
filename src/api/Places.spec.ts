@@ -29,3 +29,10 @@ test('photo', async () => {
     );
     expect(result.type).toBe('image/jpeg');
 });
+
+test('autocomplete', async () => {
+    const api = new Places(apiKey);
+    const result = await api.autocomplete('Paris');
+    expect(result.status).toBe('OK');
+    expect(result.predictions[0]?.place_id).toBe('ChIJD7fiBh9u5kcRYJSMaMOCCwQ');
+});
