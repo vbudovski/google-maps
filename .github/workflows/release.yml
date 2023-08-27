@@ -1,0 +1,59 @@
+name: Release
+
+on:
+    push:
+        branches:
+            - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+    release:
+        name: Test and release
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - uses: pnpm/action-setup@v2
+
+            - name: Set up Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '20'
+                  cache: 'pnpm'
+                  registry-url: 'https://npm.pkg.github.com'
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+
+            - name: Get pnpm store directory
+              id: pnpm-cache
+              shell: bash
+              run: |
+                  echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+            - uses: actions/cache@v3
+              name: Setup pnpm cache
+              with:
+                  path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pnpm-store-
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Run tests
+              env:
+                  GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+              run: pnpm test
+
+            - name: Create Release Pull Request or Publish to NPM
+              id: changesets
+              uses: changesets/action@v1
+              with:
+                  publish: pnpm release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
