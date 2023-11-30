@@ -1,6 +1,6 @@
 {
   "name": "@vbudovski/google-maps",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Google Maps TypeScript API",
   "author": "Vitaly Budovski <vbudovski@gmail.com>",
   "license": "UNLICENSED",
