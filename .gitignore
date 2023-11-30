@@ -6,8 +6,13 @@ node_modules
 # Misc.
 .DS_Store
 tsconfig.tsbuildinfo
+coverage/
 
 # Secrets.
 .env
 .env.*
 *.pem
+
+# Build artefacts.
+dist/
+.parcel-cache/
