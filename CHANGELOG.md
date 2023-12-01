@@ -1,5 +1,11 @@
 # @vbudovski/google-maps
 
+## 0.2.1
+
+### Patch Changes
+
+-   d69dff2: Fix broken package
+
 ## 0.2.0
 
 ### Minor Changes
