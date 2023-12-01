@@ -1,14 +1,10 @@
 import { Places } from './Places';
 
-const apiKey = process.env['GOOGLE_MAPS_API_KEY'] || '';
+const apiKey = process.env.GOOGLE_MAPS_API_KEY || '';
 
 test('findPlaceFromText', async () => {
     const api = new Places(apiKey);
-    const result = await api.findPlaceFromText('guest house wagokoro', [
-        'name',
-        'formatted_address',
-        'place_id',
-    ]);
+    const result = await api.findPlaceFromText('guest house wagokoro', ['name', 'formatted_address', 'place_id']);
     expect(result.status).toBe('OK');
     expect(result.candidates[0]?.place_id).toBe('ChIJlxPcJXmOGGARKgSIpbZII0g');
 });

@@ -69,14 +69,7 @@ const BasicDataSearchFields = z.enum([
 
 const BasicDataFields = z.union([
     BasicDataSearchFields,
-    z.enum([
-        'address_components',
-        'adr_address',
-        'url',
-        'utc_offset',
-        'vicinity',
-        'wheelchair_accessible_entrance',
-    ]),
+    z.enum(['address_components', 'adr_address', 'url', 'utc_offset', 'vicinity', 'wheelchair_accessible_entrance']),
 ]);
 
 const ContactDataSearchFields = z.enum(['opening_hours']);
@@ -114,15 +107,12 @@ const AtmosphereDataFields = z.union([
     ]),
 ]);
 
-const SearchFields = z.union([
-    BasicDataSearchFields,
-    ContactDataSearchFields,
-    AtmosphereDataSearchFields,
-]);
+const SearchFields = z.union([BasicDataSearchFields, ContactDataSearchFields, AtmosphereDataSearchFields]);
 
 const Fields = z.union([BasicDataFields, ContactDataFields, AtmosphereDataFields]);
 
 class Places extends Base {
+    // biome-ignore lint/complexity/noUselessConstructor: false positive: https://github.com/biomejs/biome/issues/987.
     constructor(apiKey: string) {
         super(apiKey);
     }
@@ -136,11 +126,7 @@ class Places extends Base {
         searchParams.set('input', input);
         searchParams.set('fields', fields.join(','));
 
-        const response = await this.callEndpoint(
-            'GET',
-            'place/findplacefromtext/json',
-            searchParams
-        );
+        const response = await this.callEndpoint('GET', 'place/findplacefromtext/json', searchParams);
         const data = await response.json();
 
         return FindPlaceResponse.parse(data);
@@ -175,10 +161,7 @@ class Places extends Base {
         return response.blob();
     }
 
-    async autocomplete(
-        input: string,
-        radius: number = 50000
-    ): Promise<z.infer<typeof PlacesAutocompleteResponse>> {
+    async autocomplete(input: string, radius = 50000): Promise<z.infer<typeof PlacesAutocompleteResponse>> {
         const searchParams = new URLSearchParams();
         searchParams.set('input', input);
         searchParams.set('radius', String(radius));

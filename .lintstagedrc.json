@@ -1,5 +1,4 @@
 {
-  "*": "prettier --ignore-unknown --write",
-  "*.{js,jsx,ts,tsx}": "eslint --fix",
+  "*": "biome check --apply",
   "*.{ts,tsx}": "tsc --skipLibCheck --noEmit --strict --target es6 --lib esnext,dom --moduleResolution node"
 }
