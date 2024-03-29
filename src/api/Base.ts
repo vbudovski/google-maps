@@ -8,6 +8,9 @@ abstract class Base {
         this.apiKey = apiKey;
     }
 
+    /* biome-ignore lint/suspicious/useAwait: FIXME: Biome cannot yet deduce that the return is a promise and therefore
+     * needs to be async. See https://github.com/biomejs/biome/issues/1161.
+     */
     protected async callEndpoint(
         method: Method,
         path: string,

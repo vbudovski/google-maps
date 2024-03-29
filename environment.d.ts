@@ -1,5 +1,5 @@
 declare namespace NodeJS {
-    interface Process {
+    interface ProcessEnv {
         GOOGLE_MAPS_API_KEY?: string;
     }
 }
