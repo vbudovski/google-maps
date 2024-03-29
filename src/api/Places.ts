@@ -117,36 +117,24 @@ class Places extends Base {
         super(apiKey);
     }
 
-    async findPlaceFromText(
-        input: string,
-        fields: z.infer<typeof SearchFields>[] = []
-    ): Promise<z.infer<typeof FindPlaceResponse>> {
+    async findPlaceFromText(input: string, fields: z.infer<typeof SearchFields>[] = []) {
         const searchParams = new URLSearchParams();
         searchParams.set('inputtype', 'textquery');
         searchParams.set('input', input);
         searchParams.set('fields', fields.join(','));
 
-        const response = await this.callEndpoint('GET', 'place/findplacefromtext/json', searchParams);
-        const data = await response.json();
-
-        return FindPlaceResponse.parse(data);
+        return await this.callJSONEndpoint(FindPlaceResponse, 'GET', 'place/findplacefromtext/json', searchParams);
     }
 
-    async details(
-        placeId: string,
-        fields: z.infer<typeof Fields>[] = []
-    ): Promise<z.infer<typeof PlaceDetailsResponse>> {
+    async details(placeId: string, fields: z.infer<typeof Fields>[] = []) {
         const searchParams = new URLSearchParams();
         searchParams.set('place_id', placeId);
         searchParams.set('fields', fields.join(','));
 
-        const response = await this.callEndpoint('GET', 'place/details/json', searchParams);
-        const data = await response.json();
-
-        return PlaceDetailsResponse.parse(data);
+        return await this.callJSONEndpoint(PlaceDetailsResponse, 'GET', 'place/details/json', searchParams);
     }
 
-    async photo(photoReference: string, maxWidth?: number, maxHeight?: number): Promise<Blob> {
+    async photo(photoReference: string, maxWidth?: number, maxHeight?: number) {
         const searchParams = new URLSearchParams();
         searchParams.set('photo_reference', photoReference);
         if (maxWidth) {
@@ -161,15 +149,12 @@ class Places extends Base {
         return response.blob();
     }
 
-    async autocomplete(input: string, radius = 50000): Promise<z.infer<typeof PlacesAutocompleteResponse>> {
+    async autocomplete(input: string, radius = 50000) {
         const searchParams = new URLSearchParams();
         searchParams.set('input', input);
         searchParams.set('radius', String(radius));
 
-        const response = await this.callEndpoint('GET', 'place/autocomplete/json', searchParams);
-        const data = await response.json();
-
-        return PlacesAutocompleteResponse.parse(data);
+        return await this.callJSONEndpoint(PlacesAutocompleteResponse, 'GET', 'place/autocomplete/json', searchParams);
     }
 }
 

@@ -32,7 +32,8 @@
     "lint-staged": "^15.2.2",
     "parcel": "^2.12.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.3",
+    "zod-fetch": "^0.1.1"
   },
   "peerDependencies": {
     "zod": "^3.22.2"

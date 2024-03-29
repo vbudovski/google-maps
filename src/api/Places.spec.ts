@@ -19,7 +19,7 @@ test('placeDetails', async () => {
 test.skip('photo', async () => {
     const api = new Places(apiKey);
     const result = await api.photo(
-        'AUacShizLPy6DqOH1WKjPBR0iTZTrJS1kvLJylidffzI4UX0LPlK63nU7c8L6D8NwW6zH8IPUkpz3uzLsIVDU73S4kQfFx01zMaNIO7Snf-HhvWld4Xty8BY7toufN-NilInhZN4krH-rcAsDaOFl1JZFZabb5GzmTow-rUMnfzyl0b4IiQ',
+        'ATplDJYIy26taB2ZfsZnbfcReQNZAuTJZxvK0llLTAmVY0jk26dhUfa6ZttSWJ2SP7ATeGuR2bTJvZQ5tzshcyJ1H5PcZL4RCNPV1kOz6dpNNg0uI-63vSgINt9uKf1-NAZpy2AvmKd-Bb5CVRHDNnDVTEXWIt1m4DTItI68d2qwB47g5tU',
         25,
         25
     );
