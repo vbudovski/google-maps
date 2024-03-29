@@ -1,57 +1,9 @@
 import { z } from 'zod';
 
-import { Place } from '../schemas/Place';
-import { PlaceAutocompletePrediction } from '../schemas/PlaceAutocompletePrediction';
+import { findPlaceFromText200Schema } from '../generated/schema/findPlaceFromTextSchema';
+import { placeDetails200Schema } from '../generated/schema/placeDetailsSchema';
+import { queryAutocomplete200Schema } from '../generated/schema/queryAutocompleteSchema';
 import { Base } from './Base';
-
-const PlacesSearchStatus = z.enum([
-    'OK',
-    'ZERO_RESULTS',
-    'INVALID_REQUEST',
-    'OVER_QUERY_LIMIT',
-    'REQUEST_DENIED',
-    'UNKNOWN_ERROR',
-]);
-
-const FindPlaceResponse = z.object({
-    candidates: Place.array(),
-    status: PlacesSearchStatus,
-    error_message: z.string().optional(),
-    info_messages: z.string().array().optional(),
-});
-
-const PlacesDetailsStatus = z.enum([
-    'OK',
-    'ZERO_RESULTS',
-    'NOT_FOUND',
-    'INVALID_REQUEST',
-    'OVER_QUERY_LIMIT',
-    'REQUEST_DENIED',
-    'UNKNOWN_ERROR',
-]);
-
-const PlaceDetailsResponse = z.object({
-    html_attributions: z.string().array(),
-    result: Place.optional(),
-    status: PlacesDetailsStatus,
-    info_messages: z.string().array().optional(),
-});
-
-const PlacesAutocompleteStatus = z.enum([
-    'OK',
-    'ZERO_RESULTS',
-    'INVALID_REQUEST',
-    'OVER_QUERY_LIMIT',
-    'REQUEST_DENIED',
-    'UNKNOWN_ERROR',
-]);
-
-const PlacesAutocompleteResponse = z.object({
-    predictions: PlaceAutocompletePrediction.array(),
-    status: PlacesAutocompleteStatus,
-    error_message: z.string().optional(),
-    info_messages: z.string().array().optional(),
-});
 
 const BasicDataSearchFields = z.enum([
     'business_status',
@@ -123,7 +75,12 @@ class Places extends Base {
         searchParams.set('input', input);
         searchParams.set('fields', fields.join(','));
 
-        return await this.callJSONEndpoint(FindPlaceResponse, 'GET', 'place/findplacefromtext/json', searchParams);
+        return await this.callJSONEndpoint(
+            findPlaceFromText200Schema,
+            'GET',
+            'place/findplacefromtext/json',
+            searchParams
+        );
     }
 
     async details(placeId: string, fields: z.infer<typeof Fields>[] = []) {
@@ -131,7 +88,7 @@ class Places extends Base {
         searchParams.set('place_id', placeId);
         searchParams.set('fields', fields.join(','));
 
-        return await this.callJSONEndpoint(PlaceDetailsResponse, 'GET', 'place/details/json', searchParams);
+        return await this.callJSONEndpoint(placeDetails200Schema, 'GET', 'place/details/json', searchParams);
     }
 
     async photo(photoReference: string, maxWidth?: number, maxHeight?: number) {
@@ -154,7 +111,7 @@ class Places extends Base {
         searchParams.set('input', input);
         searchParams.set('radius', String(radius));
 
-        return await this.callJSONEndpoint(PlacesAutocompleteResponse, 'GET', 'place/autocomplete/json', searchParams);
+        return await this.callJSONEndpoint(queryAutocomplete200Schema, 'GET', 'place/autocomplete/json', searchParams);
     }
 }
 
