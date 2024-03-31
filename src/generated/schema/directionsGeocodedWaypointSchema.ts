@@ -7,7 +7,7 @@ export const directionsGeocodedWaypointSchema = z.object({
             'Indicates the status code resulting from the geocoding operation. This field may contain the following values.'
         )
         .optional(),
-    partial_match: z.any().optional(),
+    partial_match: z.unknown().optional(),
     place_id: z
         .string()
         .describe(

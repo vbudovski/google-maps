@@ -1,6 +1,8 @@
 import { defineConfig } from '@kubb/core';
 import { definePlugin as createSwagger } from '@kubb/swagger';
+import { definePlugin as createSwaggerClient } from '@kubb/swagger-client';
 import { definePlugin as createSwaggerZod } from '@kubb/swagger-zod';
+import { templates } from './src/templates/client';
 
 export default defineConfig(async () => ({
     root: '.',
@@ -15,6 +17,20 @@ export default defineConfig(async () => ({
     },
     plugins: [
         createSwagger({ output: false }),
-        createSwaggerZod({ dateType: 'date', output: { exportType: false, path: './schema' } }),
+        createSwaggerZod({
+            dateType: 'date',
+            unknownType: 'unknown',
+            output: { exportType: false, path: './schema' },
+            templates: {
+                operations: false,
+            },
+        }),
+        createSwaggerClient({
+            output: { path: './zod-fetch', exportType: 'barrelNamed' },
+            templates: {
+                client: templates,
+                operations: false,
+            },
+        }),
     ],
 }));
