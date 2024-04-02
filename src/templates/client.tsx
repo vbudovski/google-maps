@@ -25,8 +25,9 @@ function Root(props: RootProps) {
     return (
         <Editor language="typescript">
             <File baseName={file.baseName} path={file.path} meta={file.meta as FileMeta}>
-                <File.Import name={['z']} path="zod" isTypeOnly />
+                <File.Import name={['z']} path="zod" />
                 <File.Import name={['fetcher']} path="../../fetcher" />
+                <File.Import name={['withKey']} path="../../params" />
                 <File.Source>{children}</File.Source>
             </File>
         </Editor>
@@ -49,6 +50,7 @@ function Default(props: DefaultProps) {
     const queryParamsSchema = toSchemaName(schemas.queryParams);
     const dataSchema = toSchemaName(schemas.request);
     const responseSchema = toSchemaName(schemas.response);
+    const headersSchema = toSchemaName(schemas.headerParams);
 
     const params = new FunctionParams();
     // params.add(
@@ -57,34 +59,33 @@ function Default(props: DefaultProps) {
     //         asObject: pathParamsType === 'object',
     //     })
     // );
-    if (schemas.request) {
+    params.add({
+        name: 'params',
+        type: 'z.output<typeof queryParamsSchema>',
+    });
+    if (dataSchema) {
         params.add({
             name: 'data',
-            type: `z.output<typeof ${toSchemaName(schemas.request)}>`,
+            type: `z.output<typeof ${dataSchema}>`,
         });
     }
-    if (schemas.queryParams) {
-        params.add({
-            name: 'params',
-            type: `z.output<typeof ${toSchemaName(schemas.queryParams)}>`,
-        });
-    }
-    if (schemas.headerParams) {
+    if (headersSchema) {
         params.add({
             name: 'headers',
-            type: `z.output<typeof ${toSchemaName(schemas.headerParams)}>`,
+            type: `z.output<typeof ${headersSchema}>`,
         });
     }
     params.add({
         name: 'options',
         type: 'Parameters<typeof fetcher>[2]',
+        required: false,
     });
 
     return (
         <>
-            <File.Import name={[toSchemaName(schemas.response)]} root={swaggerFile.path} path={zodFile.path} />
+            <File.Import name={[responseSchema]} root={swaggerFile.path} path={zodFile.path} />
             <File.Import
-                name={[toSchemaName(schemas.queryParams), toSchemaName(schemas.request)].filter(Boolean)}
+                name={[queryParamsSchema, dataSchema].filter(Boolean)}
                 root={swaggerFile.path}
                 path={zodFile.path}
             />
@@ -94,6 +95,9 @@ function Default(props: DefaultProps) {
                 path={zodFile.path}
                 isTypeOnly
             />
+            const queryParamsSchema = withKey({queryParamsSchema ? queryParamsSchema : 'z.object({})'});
+            <br />
+            <br />
             <KubbFunction
                 name={name}
                 async
@@ -108,22 +112,18 @@ function Default(props: DefaultProps) {
                     ],
                 }}
             >
-                {queryParamsSchema && `const parsedParams = ${queryParamsSchema}.parse(params)`}
-                {dataSchema && `${dataSchema}.parse(data)`}
+                const parsedParams = queryParamsSchema.parse(params);
+                {dataSchema && `${dataSchema}.parse(data);`}
                 <br />
                 <br />
                 const url = new URL('{operation.path}', '{operation.schema.servers?.at(0)?.url}');
                 <br />
                 <br />
-                {queryParamsSchema && (
-                    <>
-                        {'for (const [name, value] of Object.entries(parsedParams || {})) {'}
-                        <br />
-                        {'url.searchParams.set(name, value as unknown as string);'}
-                        <br />
-                        {'}'}
-                    </>
-                )}
+                {'for (const [name, value] of Object.entries(parsedParams || {})) {'}
+                <br />
+                {'url.searchParams.set(name, value as unknown as string);'}
+                <br />
+                {'}'}
                 <br />
                 <br />
                 return fetcher({responseSchema}, url {'{'} method: '{operation.method}' {', ...options}'});
