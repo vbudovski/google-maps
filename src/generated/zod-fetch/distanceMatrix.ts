@@ -1,6 +1,9 @@
 import type { z } from 'zod';
 import { fetcher } from '../../fetcher';
+import { withKey } from '../../params';
 import { distanceMatrixQueryParamsSchema, distanceMatrixQueryResponseSchema } from '../schema/distanceMatrixSchema';
+
+const queryParamsSchema = withKey(distanceMatrixQueryParamsSchema);
 
 /**
  * @description The Distance Matrix API is a service that provides travel distance and time for a matrix of origins and destinations. The API returns information based on the recommended route between start and end points, as calculated by the Google Maps API, and consists of rows containing duration and distance values for each pair.
@@ -9,10 +12,10 @@ import { distanceMatrixQueryParamsSchema, distanceMatrixQueryResponseSchema } fr
  * needs to be async. See https://github.com/biomejs/biome/issues/1161.
  */
 export async function distanceMatrix(
-    params: z.output<typeof distanceMatrixQueryParamsSchema>,
-    options: Parameters<typeof fetcher>[2]
+    params: z.output<typeof queryParamsSchema>,
+    options?: Parameters<typeof fetcher>[2]
 ) {
-    const parsedParams = distanceMatrixQueryParamsSchema.parse(params);
+    const parsedParams = queryParamsSchema.parse(params);
 
     const url = new URL('/maps/api/distancematrix/json', 'https://maps.googleapis.com');
 
