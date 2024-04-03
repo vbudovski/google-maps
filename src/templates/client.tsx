@@ -119,12 +119,22 @@ function Default(props: DefaultProps) {
                 const url = new URL('{operation.path}', '{operation.schema.servers?.at(0)?.url}');
                 <br />
                 <br />
-                {'for (const [name, value] of Object.entries(parsedParams || {})) {'}
+                for (const [name, value] of Object.entries(parsedParams || {'{}'})) {'{'}
                 <br />
-                {'url.searchParams.set(name, value as unknown as string);'}
+                if (value === undefined) {'{'}
+                <br />
+                continue;
+                {'}'}
+                if (Array.isArray(value)) {'{'}
+                <br />
+                url.searchParams.set(name, value.join(','));
+                <br />
+                {'} else {'}
+                url.searchParams.set(name, String(value));
                 <br />
                 {'}'}
                 <br />
+                {'}'}
                 <br />
                 return fetcher({responseSchema}, url {'{'} method: '{operation.method}' {', ...options}'});
             </KubbFunction>
