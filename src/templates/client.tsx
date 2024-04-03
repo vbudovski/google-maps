@@ -27,7 +27,7 @@ function Root(props: RootProps) {
             <File baseName={file.baseName} path={file.path} meta={file.meta as FileMeta}>
                 <File.Import name={['z']} path="zod" />
                 <File.Import name={['fetcher']} path="../../fetcher" />
-                <File.Import name={['withKey']} path="../../params" />
+                <File.Import name={['withKey', 'urlWithParams']} path="../../params" />
                 <File.Source>{children}</File.Source>
             </File>
         </Editor>
@@ -115,26 +115,8 @@ function Default(props: DefaultProps) {
                 const parsedParams = queryParamsSchema.parse(params);
                 {dataSchema && `${dataSchema}.parse(data);`}
                 <br />
+                const url = urlWithParams('{operation.path}', '{operation.schema.servers?.at(0)?.url}', parsedParams);
                 <br />
-                const url = new URL('{operation.path}', '{operation.schema.servers?.at(0)?.url}');
-                <br />
-                <br />
-                for (const [name, value] of Object.entries(parsedParams || {'{}'})) {'{'}
-                <br />
-                if (value === undefined) {'{'}
-                <br />
-                continue;
-                {'}'}
-                if (Array.isArray(value)) {'{'}
-                <br />
-                url.searchParams.set(name, value.join(','));
-                <br />
-                {'} else {'}
-                url.searchParams.set(name, String(value));
-                <br />
-                {'}'}
-                <br />
-                {'}'}
                 <br />
                 return fetcher({responseSchema}, url {'{'} method: '{operation.method}' {', ...options}'});
             </KubbFunction>

@@ -14,4 +14,19 @@ function withKey<T extends z.ZodRawShape>(schema: z.ZodOptional<z.ZodObject<T>> 
     return schema.merge(HasKey);
 }
 
-export { withKey };
+function urlWithParams(path: string, base: string, parsedParams: Record<string, unknown> | undefined = {}) {
+    const url = new URL(path, base);
+    for (const [name, value] of Object.entries(parsedParams)) {
+        if (value !== undefined) {
+            if (Array.isArray(value)) {
+                url.searchParams.set(name, value.join(','));
+            } else {
+                url.searchParams.set(name, String(value));
+            }
+        }
+    }
+
+    return url;
+}
+
+export { withKey, urlWithParams };
