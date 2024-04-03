@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import { fetcher } from '../../fetcher';
-import { withKey } from '../../params';
+import { urlWithParams, withKey } from '../../params';
 import { nearestRoadsQueryParamsSchema, nearestRoadsQueryResponseSchema } from '../schema/nearestRoadsSchema';
 
 const queryParamsSchema = withKey(nearestRoadsQueryParamsSchema);
@@ -16,18 +16,7 @@ export async function nearestRoads(
     options?: Parameters<typeof fetcher>[2]
 ) {
     const parsedParams = queryParamsSchema.parse(params);
+    const url = urlWithParams('/v1/nearestRoads', 'https://roads.googleapis.com', parsedParams);
 
-    const url = new URL('/v1/nearestRoads', 'https://roads.googleapis.com');
-
-    for (const [name, value] of Object.entries(parsedParams || {})) {
-        if (value === undefined) {
-            continue;
-        }
-        if (Array.isArray(value)) {
-            url.searchParams.set(name, value.join(','));
-        } else {
-            url.searchParams.set(name, String(value));
-        }
-    }
     return fetcher(nearestRoadsQueryResponseSchema, url, { method: 'get', ...options });
 }

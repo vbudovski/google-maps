@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import { fetcher } from '../../fetcher';
-import { withKey } from '../../params';
+import { urlWithParams, withKey } from '../../params';
 import { directionsQueryParamsSchema, directionsQueryResponseSchema } from '../schema/directionsSchema';
 
 const queryParamsSchema = withKey(directionsQueryParamsSchema);
@@ -13,18 +13,7 @@ const queryParamsSchema = withKey(directionsQueryParamsSchema);
  */
 export async function directions(params: z.output<typeof queryParamsSchema>, options?: Parameters<typeof fetcher>[2]) {
     const parsedParams = queryParamsSchema.parse(params);
+    const url = urlWithParams('/maps/api/directions/json', 'https://maps.googleapis.com', parsedParams);
 
-    const url = new URL('/maps/api/directions/json', 'https://maps.googleapis.com');
-
-    for (const [name, value] of Object.entries(parsedParams || {})) {
-        if (value === undefined) {
-            continue;
-        }
-        if (Array.isArray(value)) {
-            url.searchParams.set(name, value.join(','));
-        } else {
-            url.searchParams.set(name, String(value));
-        }
-    }
     return fetcher(directionsQueryResponseSchema, url, { method: 'get', ...options });
 }

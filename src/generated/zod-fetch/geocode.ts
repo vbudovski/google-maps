@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import { fetcher } from '../../fetcher';
-import { withKey } from '../../params';
+import { urlWithParams, withKey } from '../../params';
 import { geocodeQueryParamsSchema, geocodeQueryResponseSchema } from '../schema/geocodeSchema';
 
 const queryParamsSchema = withKey(geocodeQueryParamsSchema);
@@ -13,18 +13,7 @@ const queryParamsSchema = withKey(geocodeQueryParamsSchema);
  */
 export async function geocode(params: z.output<typeof queryParamsSchema>, options?: Parameters<typeof fetcher>[2]) {
     const parsedParams = queryParamsSchema.parse(params);
+    const url = urlWithParams('/maps/api/geocode/json', 'https://maps.googleapis.com', parsedParams);
 
-    const url = new URL('/maps/api/geocode/json', 'https://maps.googleapis.com');
-
-    for (const [name, value] of Object.entries(parsedParams || {})) {
-        if (value === undefined) {
-            continue;
-        }
-        if (Array.isArray(value)) {
-            url.searchParams.set(name, value.join(','));
-        } else {
-            url.searchParams.set(name, String(value));
-        }
-    }
     return fetcher(geocodeQueryResponseSchema, url, { method: 'get', ...options });
 }

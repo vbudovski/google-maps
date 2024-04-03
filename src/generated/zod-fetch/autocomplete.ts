@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import { fetcher } from '../../fetcher';
-import { withKey } from '../../params';
+import { urlWithParams, withKey } from '../../params';
 import { autocompleteQueryParamsSchema, autocompleteQueryResponseSchema } from '../schema/autocompleteSchema';
 
 const queryParamsSchema = withKey(autocompleteQueryParamsSchema);
@@ -16,18 +16,7 @@ export async function autocomplete(
     options?: Parameters<typeof fetcher>[2]
 ) {
     const parsedParams = queryParamsSchema.parse(params);
+    const url = urlWithParams('/maps/api/place/autocomplete/json', 'https://maps.googleapis.com', parsedParams);
 
-    const url = new URL('/maps/api/place/autocomplete/json', 'https://maps.googleapis.com');
-
-    for (const [name, value] of Object.entries(parsedParams || {})) {
-        if (value === undefined) {
-            continue;
-        }
-        if (Array.isArray(value)) {
-            url.searchParams.set(name, value.join(','));
-        } else {
-            url.searchParams.set(name, String(value));
-        }
-    }
     return fetcher(autocompleteQueryResponseSchema, url, { method: 'get', ...options });
 }

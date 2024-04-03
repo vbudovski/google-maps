@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { fetcher } from '../../fetcher';
-import { withKey } from '../../params';
+import { urlWithParams, withKey } from '../../params';
 import { geolocateMutationRequestSchema, geolocateMutationResponseSchema } from '../schema/geolocateSchema';
 
 const queryParamsSchema = withKey(z.object({}));
@@ -18,18 +18,7 @@ export async function geolocate(
 ) {
     const parsedParams = queryParamsSchema.parse(params);
     geolocateMutationRequestSchema.parse(data);
+    const url = urlWithParams('/geolocation/v1/geolocate', 'https://www.googleapis.com', parsedParams);
 
-    const url = new URL('/geolocation/v1/geolocate', 'https://www.googleapis.com');
-
-    for (const [name, value] of Object.entries(parsedParams || {})) {
-        if (value === undefined) {
-            continue;
-        }
-        if (Array.isArray(value)) {
-            url.searchParams.set(name, value.join(','));
-        } else {
-            url.searchParams.set(name, String(value));
-        }
-    }
     return fetcher(geolocateMutationResponseSchema, url, { method: 'post', ...options });
 }

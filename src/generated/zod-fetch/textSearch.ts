@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import { fetcher } from '../../fetcher';
-import { withKey } from '../../params';
+import { urlWithParams, withKey } from '../../params';
 import { textSearchQueryParamsSchema, textSearchQueryResponseSchema } from '../schema/textSearchSchema';
 
 const queryParamsSchema = withKey(textSearchQueryParamsSchema);
@@ -13,18 +13,7 @@ const queryParamsSchema = withKey(textSearchQueryParamsSchema);
  */
 export async function textSearch(params: z.output<typeof queryParamsSchema>, options?: Parameters<typeof fetcher>[2]) {
     const parsedParams = queryParamsSchema.parse(params);
+    const url = urlWithParams('/maps/api/place/textsearch/json', 'https://maps.googleapis.com', parsedParams);
 
-    const url = new URL('/maps/api/place/textsearch/json', 'https://maps.googleapis.com');
-
-    for (const [name, value] of Object.entries(parsedParams || {})) {
-        if (value === undefined) {
-            continue;
-        }
-        if (Array.isArray(value)) {
-            url.searchParams.set(name, value.join(','));
-        } else {
-            url.searchParams.set(name, String(value));
-        }
-    }
     return fetcher(textSearchQueryResponseSchema, url, { method: 'get', ...options });
 }

@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import { fetcher } from '../../fetcher';
-import { withKey } from '../../params';
+import { urlWithParams, withKey } from '../../params';
 import { snapToRoadsQueryParamsSchema, snapToRoadsQueryResponseSchema } from '../schema/snapToRoadsSchema';
 
 const queryParamsSchema = withKey(snapToRoadsQueryParamsSchema);
@@ -13,18 +13,7 @@ const queryParamsSchema = withKey(snapToRoadsQueryParamsSchema);
  */
 export async function snapToRoads(params: z.output<typeof queryParamsSchema>, options?: Parameters<typeof fetcher>[2]) {
     const parsedParams = queryParamsSchema.parse(params);
+    const url = urlWithParams('/v1/snaptoroads', 'https://roads.googleapis.com', parsedParams);
 
-    const url = new URL('/v1/snaptoroads', 'https://roads.googleapis.com');
-
-    for (const [name, value] of Object.entries(parsedParams || {})) {
-        if (value === undefined) {
-            continue;
-        }
-        if (Array.isArray(value)) {
-            url.searchParams.set(name, value.join(','));
-        } else {
-            url.searchParams.set(name, String(value));
-        }
-    }
     return fetcher(snapToRoadsQueryResponseSchema, url, { method: 'get', ...options });
 }

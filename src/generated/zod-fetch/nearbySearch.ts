@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 import { fetcher } from '../../fetcher';
-import { withKey } from '../../params';
+import { urlWithParams, withKey } from '../../params';
 import { nearbySearchQueryParamsSchema, nearbySearchQueryResponseSchema } from '../schema/nearbySearchSchema';
 
 const queryParamsSchema = withKey(nearbySearchQueryParamsSchema);
@@ -16,18 +16,7 @@ export async function nearbySearch(
     options?: Parameters<typeof fetcher>[2]
 ) {
     const parsedParams = queryParamsSchema.parse(params);
+    const url = urlWithParams('/maps/api/place/nearbysearch/json', 'https://maps.googleapis.com', parsedParams);
 
-    const url = new URL('/maps/api/place/nearbysearch/json', 'https://maps.googleapis.com');
-
-    for (const [name, value] of Object.entries(parsedParams || {})) {
-        if (value === undefined) {
-            continue;
-        }
-        if (Array.isArray(value)) {
-            url.searchParams.set(name, value.join(','));
-        } else {
-            url.searchParams.set(name, String(value));
-        }
-    }
     return fetcher(nearbySearchQueryResponseSchema, url, { method: 'get', ...options });
 }
