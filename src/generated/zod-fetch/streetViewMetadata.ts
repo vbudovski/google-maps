@@ -23,8 +23,14 @@ export async function streetViewMetadata(
     const url = new URL('/maps/api/streetview/metadata', 'https://maps.googleapis.com');
 
     for (const [name, value] of Object.entries(parsedParams || {})) {
-        url.searchParams.set(name, value as unknown as string);
+        if (value === undefined) {
+            continue;
+        }
+        if (Array.isArray(value)) {
+            url.searchParams.set(name, value.join(','));
+        } else {
+            url.searchParams.set(name, String(value));
+        }
     }
-
     return fetcher(streetViewMetadataQueryResponseSchema, url, { method: 'get', ...options });
 }

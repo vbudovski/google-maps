@@ -17,8 +17,14 @@ export async function snapToRoads(params: z.output<typeof queryParamsSchema>, op
     const url = new URL('/v1/snaptoroads', 'https://roads.googleapis.com');
 
     for (const [name, value] of Object.entries(parsedParams || {})) {
-        url.searchParams.set(name, value as unknown as string);
+        if (value === undefined) {
+            continue;
+        }
+        if (Array.isArray(value)) {
+            url.searchParams.set(name, value.join(','));
+        } else {
+            url.searchParams.set(name, String(value));
+        }
     }
-
     return fetcher(snapToRoadsQueryResponseSchema, url, { method: 'get', ...options });
 }

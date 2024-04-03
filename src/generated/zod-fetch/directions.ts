@@ -17,8 +17,14 @@ export async function directions(params: z.output<typeof queryParamsSchema>, opt
     const url = new URL('/maps/api/directions/json', 'https://maps.googleapis.com');
 
     for (const [name, value] of Object.entries(parsedParams || {})) {
-        url.searchParams.set(name, value as unknown as string);
+        if (value === undefined) {
+            continue;
+        }
+        if (Array.isArray(value)) {
+            url.searchParams.set(name, value.join(','));
+        } else {
+            url.searchParams.set(name, String(value));
+        }
     }
-
     return fetcher(directionsQueryResponseSchema, url, { method: 'get', ...options });
 }
