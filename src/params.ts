@@ -6,7 +6,7 @@ function isOptional<T extends z.ZodObject<z.ZodRawShape>>(schema: z.ZodOptional<
     return schema.isOptional();
 }
 
-function withKey<T extends z.ZodObject<z.ZodRawShape>>(schema: z.ZodOptional<T> | T) {
+function withKey<T extends z.ZodRawShape>(schema: z.ZodOptional<z.ZodObject<T>> | z.ZodObject<T>) {
     if (isOptional(schema)) {
         return schema.unwrap().merge(HasKey).optional();
     }
