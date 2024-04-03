@@ -22,7 +22,8 @@
     "lib": ["ESNext", "DOM"],
     "jsx": "react-jsx",
     "target": "ES6",
-    "moduleResolution": "Bundler"
+    "moduleResolution": "Bundler",
+    "types": ["vitest/globals"]
   },
   "exclude": ["node_modules"],
   "include": ["src", "environment.d.ts"]
