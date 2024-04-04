@@ -1,7 +1,6 @@
 import type { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
-import { timezoneQueryParamsSchema, timezoneQueryResponseSchema } from '../schema/timezoneSchema';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
+import { timezoneQueryParamsSchema, timezoneQueryResponseSchema } from '../../schema/timezoneSchema';
 
 const queryParamsSchema = withKey(timezoneQueryParamsSchema);
 

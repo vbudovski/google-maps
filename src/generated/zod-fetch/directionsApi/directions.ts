@@ -1,7 +1,6 @@
 import type { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
-import { directionsQueryParamsSchema, directionsQueryResponseSchema } from '../schema/directionsSchema';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
+import { directionsQueryParamsSchema, directionsQueryResponseSchema } from '../../schema/directionsSchema';
 
 const queryParamsSchema = withKey(directionsQueryParamsSchema);
 

@@ -1,7 +1,6 @@
 import type { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
-import { placePhotoQueryParamsSchema, placePhotoQueryResponseSchema } from '../schema/placePhotoSchema';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
+import { placePhotoQueryParamsSchema, placePhotoQueryResponseSchema } from '../../schema/placePhotoSchema';
 
 const queryParamsSchema = withKey(placePhotoQueryParamsSchema);
 

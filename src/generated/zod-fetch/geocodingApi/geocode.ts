@@ -1,7 +1,6 @@
 import type { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
-import { geocodeQueryParamsSchema, geocodeQueryResponseSchema } from '../schema/geocodeSchema';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
+import { geocodeQueryParamsSchema, geocodeQueryResponseSchema } from '../../schema/geocodeSchema';
 
 const queryParamsSchema = withKey(geocodeQueryParamsSchema);
 

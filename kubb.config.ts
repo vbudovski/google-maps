@@ -26,7 +26,8 @@ export default defineConfig(async () => ({
             },
         }),
         createSwaggerClient({
-            output: { path: './zod-fetch', exportType: 'barrelNamed' },
+            output: { exportType: false, path: './zod-fetch' },
+            group: { type: 'tag', output: 'zod-fetch/{{tag}}' },
             templates: {
                 client: templates,
                 operations: false,

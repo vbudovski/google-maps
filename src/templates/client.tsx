@@ -26,8 +26,7 @@ function Root(props: RootProps) {
         <Editor language="typescript">
             <File baseName={file.baseName} path={file.path} meta={file.meta as FileMeta}>
                 <File.Import name={['z']} path="zod" />
-                <File.Import name={['fetcher']} path="../../fetcher" />
-                <File.Import name={['withKey', 'urlWithParams']} path="../../params" />
+                <File.Import name={['fetcher', 'withKey', 'urlWithParams']} path="../../../utils" />
                 <File.Source>{children}</File.Source>
             </File>
         </Editor>

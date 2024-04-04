@@ -1,19 +1,17 @@
+export { directions } from './api/directionsApi';
+export { distanceMatrix } from './api/distanceMatrixApi';
+export { elevation } from './api/elevationApi';
+export { geocode } from './api/geocodingApi';
+export { geolocate } from './api/geolocationApi';
 export {
     autocomplete,
     queryAutocomplete,
-    snapToRoads,
-    streetView,
-    streetViewMetadata,
-    textSearch,
-    timezone,
-    nearbySearch,
-    nearestRoads,
-    placeDetails,
-    placePhoto,
-    directions,
-    distanceMatrix,
-    elevation,
-    geocode,
-    geolocate,
     findPlaceFromText,
-} from './generated';
+    placePhoto,
+    placeDetails,
+    textSearch,
+    nearbySearch,
+} from './api/placesApi';
+export { nearestRoads, snapToRoads } from './api/roadsApi';
+export { streetView, streetViewMetadata } from './api/streetViewApi';
+export { timezone } from './api/timeZoneApi';

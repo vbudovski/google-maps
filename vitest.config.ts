@@ -6,7 +6,7 @@ export default defineConfig({
         setupFiles: ['dotenv/config'],
         coverage: {
             provider: 'v8',
-            include: ['src/generated/zod-fetch'],
+            include: ['src/generated/zod-fetch', 'src/api', 'src/utils'],
         },
     },
 });

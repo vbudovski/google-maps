@@ -1,7 +1,6 @@
 import type { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
-import { elevationQueryParamsSchema, elevationQueryResponseSchema } from '../schema/elevationSchema';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
+import { elevationQueryParamsSchema, elevationQueryResponseSchema } from '../../schema/elevationSchema';
 
 const queryParamsSchema = withKey(elevationQueryParamsSchema);
 

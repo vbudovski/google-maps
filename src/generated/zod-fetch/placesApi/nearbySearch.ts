@@ -1,7 +1,6 @@
 import type { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
-import { nearbySearchQueryParamsSchema, nearbySearchQueryResponseSchema } from '../schema/nearbySearchSchema';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
+import { nearbySearchQueryParamsSchema, nearbySearchQueryResponseSchema } from '../../schema/nearbySearchSchema';
 
 const queryParamsSchema = withKey(nearbySearchQueryParamsSchema);
 

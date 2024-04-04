@@ -1,7 +1,6 @@
 import type { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
-import { textSearchQueryParamsSchema, textSearchQueryResponseSchema } from '../schema/textSearchSchema';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
+import { textSearchQueryParamsSchema, textSearchQueryResponseSchema } from '../../schema/textSearchSchema';
 
 const queryParamsSchema = withKey(textSearchQueryParamsSchema);
 

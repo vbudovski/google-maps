@@ -1,10 +1,9 @@
 import type { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
 import {
     streetViewMetadataQueryParamsSchema,
     streetViewMetadataQueryResponseSchema,
-} from '../schema/streetViewMetadataSchema';
+} from '../../schema/streetViewMetadataSchema';
 
 const queryParamsSchema = withKey(streetViewMetadataQueryParamsSchema);
 

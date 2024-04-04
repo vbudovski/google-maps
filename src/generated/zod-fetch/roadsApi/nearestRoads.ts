@@ -1,7 +1,6 @@
 import type { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
-import { nearestRoadsQueryParamsSchema, nearestRoadsQueryResponseSchema } from '../schema/nearestRoadsSchema';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
+import { nearestRoadsQueryParamsSchema, nearestRoadsQueryResponseSchema } from '../../schema/nearestRoadsSchema';
 
 const queryParamsSchema = withKey(nearestRoadsQueryParamsSchema);
 

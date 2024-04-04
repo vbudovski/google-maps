@@ -1,7 +1,6 @@
 import type { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
-import { distanceMatrixQueryParamsSchema, distanceMatrixQueryResponseSchema } from '../schema/distanceMatrixSchema';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
+import { distanceMatrixQueryParamsSchema, distanceMatrixQueryResponseSchema } from '../../schema/distanceMatrixSchema';
 
 const queryParamsSchema = withKey(distanceMatrixQueryParamsSchema);
 

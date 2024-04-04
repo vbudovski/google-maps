@@ -1,7 +1,6 @@
 import { z } from 'zod';
-import { fetcher } from '../../fetcher';
-import { urlWithParams, withKey } from '../../params';
-import { geolocateMutationRequestSchema, geolocateMutationResponseSchema } from '../schema/geolocateSchema';
+import { fetcher, urlWithParams, withKey } from '../../../utils';
+import { geolocateMutationRequestSchema, geolocateMutationResponseSchema } from '../../schema/geolocateSchema';
 
 const queryParamsSchema = withKey(z.object({}));
 
