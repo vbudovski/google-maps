@@ -20,7 +20,7 @@ describe('elevation', () => {
                             .object({
                                 elevation: z.number().min(3700).max(3800),
                                 resolution: z.number(),
-                                location: latLngLiteralSchema,
+                                location: latLngLiteralSchema.strict(),
                             })
                             .strict()
                     )
