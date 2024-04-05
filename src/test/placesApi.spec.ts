@@ -1,9 +1,39 @@
 import { describe, expect, test } from 'vitest';
 import { z } from 'zod';
-import { findPlaceFromText, nearbySearch, placeDetails, placePhoto, queryAutocomplete, textSearch } from '..';
+import {
+    autocomplete,
+    findPlaceFromText,
+    nearbySearch,
+    placeDetails,
+    placePhoto,
+    queryAutocomplete,
+    textSearch,
+} from '..';
 import { placeAutocompletePredictionSchema } from '../generated/schema/placeAutocompletePredictionSchema';
 import { placePhotoSchema } from '../generated/schema/placePhotoSchema';
 import { apiKey } from './consts';
+
+describe('autocomplete', () => {
+    test('OK', async () => {
+        const result = await autocomplete({
+            key: apiKey,
+            input: 'Paris',
+            radius: 1,
+        });
+
+        const expected = z
+            .object({
+                status: z.literal('OK'),
+                predictions: z.array(placeAutocompletePredictionSchema),
+            })
+            .strict();
+
+        expect(() => {
+            expected.parse(result);
+        }).not.toThrow();
+        expect(result.predictions[0]?.place_id).toBe('ChIJD7fiBh9u5kcRYJSMaMOCCwQ');
+    });
+});
 
 describe('findPlaceFromText', () => {
     test('OK', async () => {
