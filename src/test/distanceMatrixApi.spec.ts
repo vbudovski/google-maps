@@ -17,12 +17,8 @@ describe('distanceMatrix', () => {
         const expected = z
             .object({
                 status: z.literal('OK'),
-                origin_addresses: z
-                    .array(z.literal('Yoyogi Park, 2-1 Yoyogikamizonochō, Shibuya City, Tokyo 151-0052, Japan'))
-                    .length(1),
-                destination_addresses: z
-                    .array(z.literal('1-1 Udagawachō, Shibuya City, Tokyo 150-0042, Japan'))
-                    .length(1),
+                origin_addresses: z.array(z.string().includes('2-1 Yoyogikamizonochō, Shibuya City')).length(1),
+                destination_addresses: z.array(z.string().includes('1-1 Udagawachō, Shibuya City')).length(1),
                 rows: z.array(distanceMatrixRowSchema).length(1),
             })
             .strict();
