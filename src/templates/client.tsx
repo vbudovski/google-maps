@@ -33,12 +33,12 @@ function Root(props: RootProps) {
     );
 }
 
-interface DefaultProps extends ComponentProps<typeof Client.templates.default> {
+interface DefaultProps extends Pick<ComponentProps<typeof Client.templates.default>, 'name' | 'JSDoc'> {
     //
 }
 
 function Default(props: DefaultProps) {
-    const { name, generics = '', JSDoc = { comments: [] } } = props;
+    const { name, JSDoc = { comments: [] } } = props;
 
     const { getSchemas, getFile } = useOperationManager();
     const operation = useOperation();
@@ -52,12 +52,6 @@ function Default(props: DefaultProps) {
     const headersSchema = toSchemaName(schemas.headerParams);
 
     const params = new FunctionParams();
-    // params.add(
-    //     getASTParams(schemas.pathParams, {
-    //         typed: true,
-    //         asObject: pathParamsType === 'object',
-    //     })
-    // );
     params.add({
         name: 'params',
         type: 'z.output<typeof queryParamsSchema>',
@@ -107,7 +101,6 @@ function Default(props: DefaultProps) {
                 name={name}
                 async
                 export
-                generics={generics}
                 params={params.toString()}
                 JSDoc={{
                     comments: [
