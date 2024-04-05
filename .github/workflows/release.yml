@@ -28,14 +28,14 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - uses: pnpm/action-setup@v2
+            - uses: pnpm/action-setup@v3
 
             - name: Set up Node
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: '20'
                   cache: 'pnpm'
-                  registry-url: 'https://npm.pkg.github.com'
+                  registry-url: 'https://registry.npmjs.org'
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
@@ -45,7 +45,7 @@ jobs:
               run: |
                   echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-            - uses: actions/cache@v3
+            - uses: actions/cache@v4
               name: Setup pnpm cache
               with:
                   path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}

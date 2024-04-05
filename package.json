@@ -9,7 +9,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org",
+    "provenance": true
   },
   "files": ["dist/*", "CHANGELOG.md", "LICENSE.md"],
   "repository": "https://github.com/vbudovski/google-maps.git",
@@ -50,7 +51,7 @@
     "format": "biome format --write .",
     "check-types": "tsc -b",
     "lint": "biome lint src",
-    "prepare": "husky install",
+    "prepare": "husky",
     "release": "pnpm build && pnpm changeset publish"
   },
   "packageManager": "pnpm@8.15.6+sha256.01c01eeb990e379b31ef19c03e9d06a14afa5250b82e81303f88721c99ff2e6f"
