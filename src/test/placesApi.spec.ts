@@ -17,7 +17,7 @@ describe('autocomplete', () => {
     test('OK', async () => {
         const result = await autocomplete({
             key: apiKey,
-            input: 'Paris',
+            input: 'guest house wagokoro',
             radius: 1,
         });
 
@@ -31,7 +31,7 @@ describe('autocomplete', () => {
         expect(() => {
             expected.parse(result);
         }).not.toThrow();
-        expect(result.predictions[0]?.place_id).toBe('ChIJD7fiBh9u5kcRYJSMaMOCCwQ');
+        expect(result.predictions[0]?.place_id).toBe('ChIJlxPcJXmOGGARKgSIpbZII0g');
     });
 });
 
@@ -166,7 +166,7 @@ describe('queryAutocomplete', () => {
     test('OK', async () => {
         const result = await queryAutocomplete({
             key: apiKey,
-            input: 'Paris',
+            input: 'guest house wagokoro',
             radius: 1,
         });
 
@@ -180,7 +180,7 @@ describe('queryAutocomplete', () => {
         expect(() => {
             expected.parse(result);
         }).not.toThrow();
-        expect(result.predictions[0]?.place_id).toBe('ChIJD7fiBh9u5kcRYJSMaMOCCwQ');
+        expect(result.predictions[0]?.place_id).toBe('ChIJlxPcJXmOGGARKgSIpbZII0g');
     });
 });
 
