@@ -5,7 +5,7 @@ import { latLngLiteralSchema } from '../generated/schema/latLngLiteralSchema';
 import { apiKey } from './consts';
 
 describe('streetView', () => {
-    test.skip('OK', async () => {
+    test('OK', async () => {
         const result = await streetView({
             key: apiKey,
             location: '35.70434411172008,139.8114161291331',
@@ -14,8 +14,11 @@ describe('streetView', () => {
             size: '600x400',
         });
 
-        // FIXME: Handle non-JSON results.
-        expect(result).toBeFalsy();
+        const expected = z.string();
+
+        expect(() => {
+            expected.parse(result);
+        }).not.toThrow();
     });
 });
 

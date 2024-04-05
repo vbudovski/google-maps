@@ -145,7 +145,7 @@ describe('placeDetails', () => {
 });
 
 describe('placePhoto', () => {
-    test.skip('OK', async () => {
+    test('OK', async () => {
         const result = await placePhoto({
             key: apiKey,
             photo_reference:
@@ -154,8 +154,11 @@ describe('placePhoto', () => {
             maxheight: 25,
         });
 
-        // FIXME: Handle non-JSON results.
-        expect(result).toBeFalsy();
+        const expected = z.string();
+
+        expect(() => {
+            expected.parse(result);
+        }).not.toThrow();
     });
 });
 
