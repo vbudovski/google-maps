@@ -18,8 +18,12 @@ function urlWithParams(path: string, base: string, parsedParams: Record<string, 
     const url = new URL(path, base);
     for (const [name, value] of Object.entries(parsedParams)) {
         if (value !== undefined) {
-            if (Array.isArray(value)) {
-                url.searchParams.set(name, value.join(','));
+            if (Array.isArray(value) && value.length > 0) {
+                const strings = value.map(v => String(v));
+                // Value can never be undefined as the array length is greater than 0.
+                const separator = strings.at(0)?.includes(',') ? '|' : ',';
+
+                url.searchParams.set(name, value.join(separator));
             } else {
                 url.searchParams.set(name, String(value));
             }
