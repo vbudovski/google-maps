@@ -80,6 +80,12 @@ function Default(props: DefaultProps) {
         required: false,
     });
 
+    let path = operation.path;
+    // FIXME: Workaround for bug in OpenAPI schema. See https://github.com/googlemaps/openapi-specification/issues/484.
+    if (path === '/v1/snaptoroads') {
+        path = '/v1/snapToRoads';
+    }
+
     return (
         <>
             <File.Import name={[responseSchema]} root={swaggerFile.path} path={zodFile.path} />
@@ -114,7 +120,7 @@ function Default(props: DefaultProps) {
                 const parsedParams = queryParamsSchema.parse(params);
                 {dataSchema && `${dataSchema}.parse(data);`}
                 <br />
-                const url = urlWithParams('{operation.path}', '{operation.schema.servers?.at(0)?.url}', parsedParams);
+                const url = urlWithParams('{path}', '{operation.schema.servers?.at(0)?.url}', parsedParams);
                 <br />
                 <br />
                 return fetcher({responseSchema}, url {'{'} method: '{operation.method}' {', ...options}'});

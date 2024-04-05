@@ -12,7 +12,7 @@ const queryParamsSchema = withKey(snapToRoadsQueryParamsSchema);
  */
 export async function snapToRoads(params: z.output<typeof queryParamsSchema>, options?: Parameters<typeof fetcher>[2]) {
     const parsedParams = queryParamsSchema.parse(params);
-    const url = urlWithParams('/v1/snaptoroads', 'https://roads.googleapis.com', parsedParams);
+    const url = urlWithParams('/v1/snapToRoads', 'https://roads.googleapis.com', parsedParams);
 
     return fetcher(snapToRoadsQueryResponseSchema, url, { method: 'get', ...options });
 }
