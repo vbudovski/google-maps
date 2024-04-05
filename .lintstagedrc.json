@@ -1,4 +1,4 @@
 {
-  "*": "biome check --apply",
-  "*.{ts,tsx}": "tsc --skipLibCheck --noEmit --strict --target es6 --lib esnext,dom --moduleResolution node"
+  "*": "biome check --apply --no-errors-on-unmatched",
+  "*.{ts,tsx}": "tsc --skipLibCheck --noEmit --strict --target es6 --lib esnext,dom  --jsx preserve --esModuleInterop --moduleResolution node"
 }

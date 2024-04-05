@@ -1,9 +1,9 @@
 {
   "name": "@vbudovski/google-maps",
   "version": "0.2.1",
-  "description": "Google Maps TypeScript API",
+  "description": "A TypeScript-typed and runtime-validated Google Maps Platform API.",
   "author": "Vitaly Budovski <vbudovski@gmail.com>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -11,36 +11,47 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "files": ["dist/*", "CHANGELOG.md"],
+  "files": ["dist/*", "CHANGELOG.md", "LICENSE.md"],
   "repository": "https://github.com/vbudovski/google-maps.git",
   "devDependencies": {
-    "@biomejs/biome": "^1.6.3",
+    "@biomejs/biome": "^1.6.4",
     "@changesets/cli": "^2.27.1",
+    "@kubb/cli": "^2.12.3",
+    "@kubb/core": "^2.12.3",
+    "@kubb/react": "^2.12.3",
+    "@kubb/swagger": "^2.12.3",
+    "@kubb/swagger-client": "^2.12.3",
+    "@kubb/swagger-zod": "^2.12.3",
     "@parcel/packager-ts": "2.12.0",
     "@parcel/transformer-typescript-types": "2.12.0",
-    "@swc/core": "^1.4.11",
-    "@swc/jest": "^0.2.36",
     "@tsconfig/strictest": "^2.0.5",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.30",
+    "@types/node": "^20.12.4",
+    "@types/react": "^18.2.74",
+    "@vitest/coverage-v8": "^1.4.0",
+    "dotenv": "^16.4.5",
     "husky": "^9.0.11",
-    "jest": "^29.7.0",
     "lint-staged": "^15.2.2",
     "parcel": "^2.12.0",
+    "react": "^18.2.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.4",
+    "vitest": "^1.4.0"
+  },
+  "dependencies": {
+    "zod-fetch": "^0.1.1"
   },
   "peerDependencies": {
     "zod": "^3.22.2"
   },
   "scripts": {
+    "generate": "kubb",
     "build": "parcel build",
-    "test": "jest",
+    "test": "vitest run --coverage",
     "format": "biome format --write .",
     "check-types": "tsc -b",
     "lint": "biome lint src",
     "prepare": "husky install",
     "release": "pnpm build && pnpm changeset publish"
   },
-  "packageManager": "pnpm@8.15.5+sha256.4b4efa12490e5055d59b9b9fc9438b7d581a6b7af3b5675eb5c5f447cee1a589"
+  "packageManager": "pnpm@8.15.6+sha256.01c01eeb990e379b31ef19c03e9d06a14afa5250b82e81303f88721c99ff2e6f"
 }
