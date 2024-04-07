@@ -20,23 +20,23 @@ devDependencies:
     specifier: ^2.27.1
     version: 2.27.1
   '@kubb/cli':
-    specifier: ^2.12.3
-    version: 2.12.3(typescript@5.4.4)
+    specifier: ^2.12.5
+    version: 2.12.5(typescript@5.4.4)
   '@kubb/core':
-    specifier: ^2.12.3
-    version: 2.12.3
+    specifier: ^2.12.5
+    version: 2.12.5
   '@kubb/react':
-    specifier: ^2.12.3
-    version: 2.12.3
+    specifier: ^2.12.5
+    version: 2.12.5
   '@kubb/swagger':
-    specifier: ^2.12.3
-    version: 2.12.3(@kubb/react@2.12.3)
+    specifier: ^2.12.5
+    version: 2.12.5(@kubb/react@2.12.5)
   '@kubb/swagger-client':
-    specifier: ^2.12.3
-    version: 2.12.3(@kubb/react@2.12.3)
+    specifier: ^2.12.5
+    version: 2.12.5(@kubb/react@2.12.5)
   '@kubb/swagger-zod':
-    specifier: ^2.12.3
-    version: 2.12.3(@kubb/react@2.12.3)
+    specifier: ^2.12.5
+    version: 2.12.5(@kubb/react@2.12.5)
   '@parcel/packager-ts':
     specifier: 2.12.0
     version: 2.12.0(@parcel/core@2.12.0)
@@ -47,8 +47,8 @@ devDependencies:
     specifier: ^2.0.5
     version: 2.0.5
   '@types/node':
-    specifier: ^20.12.4
-    version: 20.12.4
+    specifier: ^20.12.5
+    version: 20.12.5
   '@types/react':
     specifier: ^18.2.74
     version: 18.2.74
@@ -72,13 +72,13 @@ devDependencies:
     version: 18.2.0
   ts-node:
     specifier: ^10.9.2
-    version: 10.9.2(@types/node@20.12.4)(typescript@5.4.4)
+    version: 10.9.2(@types/node@20.12.5)(typescript@5.4.4)
   typescript:
     specifier: ^5.4.4
     version: 5.4.4
   vitest:
     specifier: ^1.4.0
-    version: 1.4.0(@types/node@20.12.4)
+    version: 1.4.0(@types/node@20.12.5)
 
 packages:
 
@@ -182,8 +182,8 @@ packages:
       regenerator-runtime: 0.14.0
     dev: true
 
-  /@babel/runtime@7.24.1:
-    resolution: {integrity: sha512-+BIznRzyqBf+2wCTxcKE3wDjfGeCoVE61KSHGpkzqrLi8qxqFwBeUFyId2cxkTmm55fzDGnm0+yCxaxygrLUnQ==}
+  /@babel/runtime@7.24.4:
+    resolution: {integrity: sha512-dkxf7+hn8mFBwKjs9bvBlArzLVxVbS8usaPUDd5p2a9JCL9tB8OaOVN1isD4+Xyk4ns89/xeOmbQvgdK7IIVdA==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
@@ -749,12 +749,12 @@ packages:
     resolution: {integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==}
     dev: true
 
-  /@kubb/cli@2.12.3(typescript@5.4.4):
-    resolution: {integrity: sha512-Q9hFoR4Uu/6Vos+XDT18yDeXE+n46zRcbCF46W9IuRXaSOZCNK0H/FzEY7Jq+o8YaFKnB+GWRxvBtxUZfSrSGA==}
+  /@kubb/cli@2.12.5(typescript@5.4.4):
+    resolution: {integrity: sha512-d5JtjGVkmfqewAy/073GxoSMXqkSqWJxieUFtZOnWFi47v43P63DbFaYIRzIh9KxcqqT/duHpza3+K+1rloWfQ==}
     engines: {node: '>=18', pnpm: '>=8.3.0'}
     hasBin: true
     dependencies:
-      '@kubb/core': 2.12.3
+      '@kubb/core': 2.12.5
       bundle-require: 4.0.2(esbuild@0.20.2)
       cac: 6.7.14
       chokidar: 3.6.0
@@ -770,13 +770,13 @@ packages:
       - typescript
     dev: true
 
-  /@kubb/core@2.12.3:
-    resolution: {integrity: sha512-fR/4wVthypf3SoMGhRGJx4sK2vtpcl6Clb5T7tXKpd20i2OoTcipf9pB92tpzQVJcpG9PMn52nNnpk9X+p8cmA==}
+  /@kubb/core@2.12.5:
+    resolution: {integrity: sha512-u5zAXPFe9h8rxcflEGOsAXetegquAHJmnn+sywusRiU4WtR44P3ruE3XwX+6Q4UfKPj4rHwD7ldUm/kPz2I4Pw==}
     engines: {node: '>=18', pnpm: '>=8.3.0'}
     dependencies:
-      '@kubb/parser': 2.12.3
-      '@kubb/types': 2.12.3
-      change-case: 5.4.3
+      '@kubb/parser': 2.12.5
+      '@kubb/types': 2.12.5
+      change-case: 5.4.4
       directory-tree: 3.5.1
       find-up: 7.0.0
       fs-extra: 11.2.0
@@ -789,51 +789,51 @@ packages:
       unraw: 3.0.0
     dev: true
 
-  /@kubb/parser@2.12.3:
-    resolution: {integrity: sha512-UTvlqXfOxe43+0Qtv5VKWap680mQDoQb/ZNI/jPEvR4goGS+ZL0v93VpXEZh06WNHEfeqSa22e88ld173YSRpg==}
+  /@kubb/parser@2.12.5:
+    resolution: {integrity: sha512-OZ1YlWIQ79Xa8vknIpiT+TTnqL9S6M3KTTUa1UXu+9fvLfcujoEWfD4Pw2Lny+Q2qUeW8c5W0vUbzh/QqXCuBw==}
     engines: {node: '>=18', pnpm: '>=8.3.0'}
     dependencies:
       typescript: 5.4.4
     dev: true
 
-  /@kubb/react@2.12.3:
-    resolution: {integrity: sha512-qrByHTB2vcIGY7Rouk4LUK3k4E3U1blgbx6ApJnPzFPhgdJJnPh13tMLJhw7uM9IDnsMIgO6YkBguVK7okBR8A==}
+  /@kubb/react@2.12.5:
+    resolution: {integrity: sha512-QmUx3R9oUaD7AXvLAYckl3+ywYNhHhAoy+HAGCawyBF34PfdwRwnUgeLDnQ7YRzMu8d1Qr/gNB+B2DAscVmzNg==}
     engines: {node: '>=18', pnpm: '>=8.3.0'}
     dependencies:
-      '@kubb/core': 2.12.3
-      '@kubb/parser': 2.12.3
+      '@kubb/core': 2.12.5
+      '@kubb/parser': 2.12.5
     dev: true
 
-  /@kubb/swagger-client@2.12.3(@kubb/react@2.12.3):
-    resolution: {integrity: sha512-Y6Lz3vdw1r8hFt1XGLaaB2RcHwUW97J4zgrqJoy95yACb9gL4Q0Nn2tPnoNMO67ESv+Y5LL635l1CL1W0LN0uQ==}
+  /@kubb/swagger-client@2.12.5(@kubb/react@2.12.5):
+    resolution: {integrity: sha512-fj1ju0EKPMVxYhvaDBB836hRfUg5mTlkCE1Xg+4XaiUuWA/Cy3wTEFZyTk8kH14AGMdW53FGsqMnpssxNyujUw==}
     engines: {node: '>=18', pnpm: '>=8.3.0'}
     peerDependencies:
-      '@kubb/react': 2.12.3
+      '@kubb/react': 2.12.5
       axios: ^1.6.2
     peerDependenciesMeta:
       axios:
         optional: true
     dependencies:
-      '@kubb/core': 2.12.3
-      '@kubb/parser': 2.12.3
-      '@kubb/react': 2.12.3
-      '@kubb/swagger': 2.12.3(@kubb/react@2.12.3)
-      '@kubb/swagger-ts': 2.12.3(@kubb/react@2.12.3)
+      '@kubb/core': 2.12.5
+      '@kubb/parser': 2.12.5
+      '@kubb/react': 2.12.5
+      '@kubb/swagger': 2.12.5(@kubb/react@2.12.5)
+      '@kubb/swagger-ts': 2.12.5(@kubb/react@2.12.5)
     transitivePeerDependencies:
       - encoding
     dev: true
 
-  /@kubb/swagger-ts@2.12.3(@kubb/react@2.12.3):
-    resolution: {integrity: sha512-ZifhQGysT8qgsQHU3TLPNkCpboLa572ozZIWkDICB24d7SWMlfYRpNLJUiao42Hr3eFjkQL12ycwfMGw+BAi4Q==}
+  /@kubb/swagger-ts@2.12.5(@kubb/react@2.12.5):
+    resolution: {integrity: sha512-XI2ws16B+vZlf1edtoJfghtiQYGUR23Zva6+Qpm6+zrUesk945lP97bGBtKGVhy4u2pdy/M/TBOu+qcUS6pBDg==}
     engines: {node: '>=18', pnpm: '>=8.3.0'}
     peerDependencies:
-      '@kubb/react': 2.12.3
+      '@kubb/react': 2.12.5
     dependencies:
-      '@kubb/core': 2.12.3
-      '@kubb/parser': 2.12.3
-      '@kubb/react': 2.12.3
-      '@kubb/swagger': 2.12.3(@kubb/react@2.12.3)
-      '@kubb/types': 2.12.3
+      '@kubb/core': 2.12.5
+      '@kubb/parser': 2.12.5
+      '@kubb/react': 2.12.5
+      '@kubb/swagger': 2.12.5(@kubb/react@2.12.5)
+      '@kubb/types': 2.12.5
       hotscript: 1.0.13
       json-schema-to-ts: 3.0.1
       ts-toolbelt: 9.6.0
@@ -841,30 +841,30 @@ packages:
       - encoding
     dev: true
 
-  /@kubb/swagger-zod@2.12.3(@kubb/react@2.12.3):
-    resolution: {integrity: sha512-uk5y3gD3aDeRwJ0fl/hJkUhh/VBdJWQjncck313bOXQpHUG9c3TIRnKYNOZN34h4pbX92h9YtGfvo4aQkXuLmg==}
+  /@kubb/swagger-zod@2.12.5(@kubb/react@2.12.5):
+    resolution: {integrity: sha512-y756tC6L7vTeHgSU8H+pPeXJp+JLNIETXYP9eIEqC8yQ2ir3Poz1rPvL2DPZ98I/YLt06VCRPT7wT1Q+jwVDjw==}
     engines: {node: '>=18', pnpm: '>=8.3.0'}
     peerDependencies:
-      '@kubb/react': 2.12.3
+      '@kubb/react': 2.12.5
     dependencies:
-      '@kubb/core': 2.12.3
-      '@kubb/parser': 2.12.3
-      '@kubb/react': 2.12.3
-      '@kubb/swagger': 2.12.3(@kubb/react@2.12.3)
-      '@kubb/swagger-ts': 2.12.3(@kubb/react@2.12.3)
+      '@kubb/core': 2.12.5
+      '@kubb/parser': 2.12.5
+      '@kubb/react': 2.12.5
+      '@kubb/swagger': 2.12.5(@kubb/react@2.12.5)
+      '@kubb/swagger-ts': 2.12.5(@kubb/react@2.12.5)
     transitivePeerDependencies:
       - encoding
     dev: true
 
-  /@kubb/swagger@2.12.3(@kubb/react@2.12.3):
-    resolution: {integrity: sha512-I4w/Xz34S1IfnQWA2n11GjX6qSsYp5tZdONbOlTErufsEyS2fBuu1VBGh1IG6DJoweBy1VSPX2C60dBb/EvbCw==}
+  /@kubb/swagger@2.12.5(@kubb/react@2.12.5):
+    resolution: {integrity: sha512-D80nvOWpXRjLUzOLa0G1BErFriTisQlqC6u0h3DU8ClJXe8UPrhFR2iUA4eaqTD5t70BESa5rVM8gPpZn+T0WA==}
     engines: {node: '>=18', pnpm: '>=8.3.0'}
     peerDependencies:
-      '@kubb/react': 2.12.3
+      '@kubb/react': 2.12.5
     dependencies:
       '@apidevtools/swagger-parser': 10.1.0(openapi-types@12.1.3)
-      '@kubb/core': 2.12.3
-      '@kubb/react': 2.12.3
+      '@kubb/core': 2.12.5
+      '@kubb/react': 2.12.5
       js-yaml: 4.1.0
       oas: 24.1.0
       oas-normalize: 11.0.1
@@ -874,8 +874,8 @@ packages:
       - encoding
     dev: true
 
-  /@kubb/types@2.12.3:
-    resolution: {integrity: sha512-SEmIgXUYivd3w9z57lq1rRKczI4U8QQwxmTsMxOxw50fWmJ1AXAutbk8ufEHjB+VEBBFk5taZmcyiD7oHNOCmg==}
+  /@kubb/types@2.12.5:
+    resolution: {integrity: sha512-A8je67gSV39K4u2YQDQzVBA4YL4QbHhu/VOlcZcPVMp54aqwZb2f2S+ubaEdREEHEAs2D/15xrhoEsIYDVM93A==}
     engines: {node: '>=18', pnpm: '>=8.3.0'}
     dev: true
 
@@ -1966,7 +1966,7 @@ packages:
       ajv: 4.11.8 - 8
     dependencies:
       '@babel/code-frame': 7.24.2
-      '@babel/runtime': 7.24.1
+      '@babel/runtime': 7.24.4
       '@humanwhocodes/momoa': 2.0.4
       ajv: 8.12.0
       chalk: 4.1.2
@@ -2318,8 +2318,8 @@ packages:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
 
-  /@types/node@20.12.4:
-    resolution: {integrity: sha512-E+Fa9z3wSQpzgYQdYmme5X3OTuejnnTx88A6p6vkkJosR3KBz+HpE3kqNm98VE6cfLFcISx7zW7MsJkH6KwbTw==}
+  /@types/node@20.12.5:
+    resolution: {integrity: sha512-BD+BjQ9LS/D8ST9p5uqBxghlN+S42iuNxjsUGjeZobe/ciXzk2qb1B6IXc6AnRLS+yFJRpN2IPEHMzwspfDJNw==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -2362,7 +2362,7 @@ packages:
       strip-literal: 2.1.0
       test-exclude: 6.0.0
       v8-to-istanbul: 9.2.0
-      vitest: 1.4.0(@types/node@20.12.4)
+      vitest: 1.4.0(@types/node@20.12.5)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2708,8 +2708,8 @@ packages:
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
     dev: true
 
-  /change-case@5.4.3:
-    resolution: {integrity: sha512-4cdyvorTy/lViZlVzw2O8/hHCLUuHqp4KpSSP3DlauhFCf3LdnfF+p5s0EAhjKsU7bqrMzu7iQArYfoPiHO2nw==}
+  /change-case@5.4.4:
+    resolution: {integrity: sha512-HRQyTk2/YPEkt9TnUPbOpr64Uw3KOicFWPVBb+xiHvd6eBx/qPr9xqfBFDT8P2vWsvvz4jbEkfDe71W3VyNu2w==}
     dev: true
 
   /chardet@0.7.0:
@@ -4096,7 +4096,7 @@ packages:
     resolution: {integrity: sha512-ANphQxnKbzLWPeYDmdoci8C9g9ttpfMx8etTlJJ8UCEmNXH9jxGkn3AAbMe+lR4N5OG/01nYxPrDyugLdsRt+A==}
     engines: {node: '>=16'}
     dependencies:
-      '@babel/runtime': 7.23.5
+      '@babel/runtime': 7.24.4
       ts-algebra: 1.2.2
     dev: true
 
@@ -5820,7 +5820,7 @@ packages:
     resolution: {integrity: sha512-kloPhf1hq3JbCPOTYoOWDKxebWjNb2o/LKnNfkWhxVVisFFmMJPPdJeGoGmM+iRLyoXAR61e08Pb+vUXINg8aA==}
     dev: true
 
-  /ts-node@10.9.2(@types/node@20.12.4)(typescript@5.4.4):
+  /ts-node@10.9.2(@types/node@20.12.5)(typescript@5.4.4):
     resolution: {integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==}
     hasBin: true
     peerDependencies:
@@ -5839,7 +5839,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.12.4
+      '@types/node': 20.12.5
       acorn: 8.11.3
       acorn-walk: 8.3.2
       arg: 4.1.3
@@ -6063,7 +6063,7 @@ packages:
     resolution: {integrity: sha512-kRAyotcbNaSYoDnXvb4MHg/0a1egJdLwS6oJ38TJY7aw9n93Fl/3blIXdyYvPOp55CNxywooG/3BcrwNrBpcSg==}
     dev: true
 
-  /vite-node@1.4.0(@types/node@20.12.4):
+  /vite-node@1.4.0(@types/node@20.12.5):
     resolution: {integrity: sha512-VZDAseqjrHgNd4Kh8icYHWzTKSCZMhia7GyHfhtzLW33fZlG9SwsB6CEhgyVOWkJfJ2pFLrp/Gj1FSfAiqH9Lw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -6072,7 +6072,7 @@ packages:
       debug: 4.3.4
       pathe: 1.1.2
       picocolors: 1.0.0
-      vite: 5.2.7(@types/node@20.12.4)
+      vite: 5.2.7(@types/node@20.12.5)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -6084,7 +6084,7 @@ packages:
       - terser
     dev: true
 
-  /vite@5.2.7(@types/node@20.12.4):
+  /vite@5.2.7(@types/node@20.12.5):
     resolution: {integrity: sha512-k14PWOKLI6pMaSzAuGtT+Cf0YmIx12z9YGon39onaJNy8DLBfBJrzg9FQEmkAM5lpHBZs9wksWAsyF/HkpEwJA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -6112,7 +6112,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.12.4
+      '@types/node': 20.12.5
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.14.0
@@ -6120,7 +6120,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@1.4.0(@types/node@20.12.4):
+  /vitest@1.4.0(@types/node@20.12.5):
     resolution: {integrity: sha512-gujzn0g7fmwf83/WzrDTnncZt2UiXP41mHuFYFrdwaLRVQ6JYQEiME2IfEjU3vcFL3VKa75XhI3lFgn+hfVsQw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -6145,7 +6145,7 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@types/node': 20.12.4
+      '@types/node': 20.12.5
       '@vitest/expect': 1.4.0
       '@vitest/runner': 1.4.0
       '@vitest/snapshot': 1.4.0
@@ -6163,8 +6163,8 @@ packages:
       strip-literal: 2.1.0
       tinybench: 2.6.0
       tinypool: 0.8.3
-      vite: 5.2.7(@types/node@20.12.4)
-      vite-node: 1.4.0(@types/node@20.12.4)
+      vite: 5.2.7(@types/node@20.12.5)
+      vite-node: 1.4.0(@types/node@20.12.5)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
