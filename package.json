@@ -45,7 +45,7 @@
     "zod": "^3.22.2"
   },
   "scripts": {
-    "generate": "kubb",
+    "generate": "kubb && biome check --apply-unsafe src/generated",
     "build": "parcel build",
     "test": "vitest run --coverage",
     "format": "biome format --write .",
