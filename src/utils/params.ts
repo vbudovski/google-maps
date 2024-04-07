@@ -14,16 +14,26 @@ function withKey<T extends z.ZodRawShape>(schema: z.ZodOptional<z.ZodObject<T>> 
     return schema.merge(HasKey);
 }
 
-function urlWithParams(path: string, base: string, parsedParams: Record<string, unknown> | undefined = {}) {
+type NonEmptyArray<ElementT> = ElementT[] & {
+    0: ElementT;
+    at: (index: 0) => ElementT;
+};
+
+function isNonEmptyArray<ElementT>(array: ElementT[]): array is NonEmptyArray<ElementT> {
+    return array.length > 0;
+}
+
+function urlWithParams(path: string, base: string, parsedParams: Record<string, unknown> = {}) {
     const url = new URL(path, base);
     for (const [name, value] of Object.entries(parsedParams)) {
         if (value !== undefined) {
-            if (Array.isArray(value) && value.length > 0) {
+            if (Array.isArray(value)) {
                 const strings = value.map(v => String(v));
-                // Value can never be undefined as the array length is greater than 0.
-                const separator = strings.at(0)?.includes(',') ? '|' : ',';
+                if (isNonEmptyArray(strings)) {
+                    const separator = strings.at(0).includes(',') ? '|' : ',';
 
-                url.searchParams.set(name, value.join(separator));
+                    url.searchParams.set(name, value.join(separator));
+                }
             } else {
                 url.searchParams.set(name, String(value));
             }
