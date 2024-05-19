@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+/**
+ * @description The total fare for the route.\n\n```\n{\n  \"currency\" : \"USD\",\n  \"value\" : 6,\n  \"text\" : \"$6.00\"\n}\n```\n
+ */
 export const fareSchema = z
     .object({
         currency: z

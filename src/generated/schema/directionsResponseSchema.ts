@@ -16,11 +16,7 @@ export const directionsResponseSchema = z.object({
         .describe(
             'Contains an array of routes from the origin to the destination. Routes consist of nested Legs and Steps.'
         ),
-    status: z
-        .lazy(() => directionsStatusSchema)
-        .describe(
-            'Contains the status of the request, and may contain debugging information to help you track down why the request failed.'
-        ),
+    status: z.lazy(() => directionsStatusSchema),
     available_travel_modes: z
         .array(z.lazy(() => travelModeSchema))
         .describe(

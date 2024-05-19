@@ -3,17 +3,14 @@ import { directionsTransitLineSchema } from './directionsTransitLineSchema';
 import { directionsTransitStopSchema } from './directionsTransitStopSchema';
 import { timeZoneTextValueObjectSchema } from './timeZoneTextValueObjectSchema';
 
+/**
+ * @description Additional information that is not relevant for other modes of transportation.
+ */
 export const directionsTransitDetailsSchema = z
     .object({
-        arrival_stop: z
-            .lazy(() => directionsTransitStopSchema)
-            .describe('The arrival transit stop.')
-            .optional(),
+        arrival_stop: z.lazy(() => directionsTransitStopSchema).optional(),
         arrival_time: z.lazy(() => timeZoneTextValueObjectSchema).optional(),
-        departure_stop: z
-            .lazy(() => directionsTransitStopSchema)
-            .describe('The departure transit stop.')
-            .optional(),
+        departure_stop: z.lazy(() => directionsTransitStopSchema).optional(),
         departure_time: z.lazy(() => timeZoneTextValueObjectSchema).optional(),
         headsign: z
             .string()
@@ -27,10 +24,7 @@ export const directionsTransitDetailsSchema = z
                 'Specifies the expected number of seconds between departures from the same stop at this time. For example, with a `headway` value of 600, you would expect a ten minute wait if you should miss your bus.'
             )
             .optional(),
-        line: z
-            .lazy(() => directionsTransitLineSchema)
-            .describe('Contains information about the transit line used in this step.')
-            .optional(),
+        line: z.lazy(() => directionsTransitLineSchema).optional(),
         num_stops: z
             .number()
             .describe(

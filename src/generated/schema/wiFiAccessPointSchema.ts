@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+/**
+ * @description Attributes used to describe a WiFi access point.
+ */
 export const wiFiAccessPointSchema = z
     .object({
         macAddress: z

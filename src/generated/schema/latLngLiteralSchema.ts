@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+/**
+ * @description An object describing a specific location with Latitude and Longitude in decimal degrees.
+ */
 export const latLngLiteralSchema = z
     .object({
         lat: z.number().describe('Latitude in decimal degrees'),

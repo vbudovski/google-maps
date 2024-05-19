@@ -121,12 +121,10 @@ export const nearbySearchQueryParamsSchema = z.object({
         )
         .optional(),
 });
-
 /**
  * @description 200 OK
  */
 export const nearbySearch200Schema = z.lazy(() => placesNearbySearchResponseSchema);
-
 /**
  * @description 200 OK
  */

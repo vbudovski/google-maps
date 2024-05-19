@@ -387,12 +387,10 @@ export const distanceMatrixQueryParamsSchema = z.object({
         )
         .optional(),
 });
-
 /**
  * @description 200 OK
  */
 export const distanceMatrix200Schema = z.lazy(() => distanceMatrixResponseSchema);
-
 /**
  * @description 200 OK
  */

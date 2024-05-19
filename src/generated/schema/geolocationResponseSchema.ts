@@ -1,11 +1,12 @@
 import { z } from 'zod';
 import { latLngLiteralSchema } from './latLngLiteralSchema';
 
+/**
+ * @description A successful geolocation request will return a JSON-formatted response defining a location and radius.
+ */
 export const geolocationResponseSchema = z
     .object({
-        location: z
-            .lazy(() => latLngLiteralSchema)
-            .describe('The user\u2019s estimated latitude and longitude, in degrees.'),
+        location: z.lazy(() => latLngLiteralSchema),
         accuracy: z
             .number()
             .describe(

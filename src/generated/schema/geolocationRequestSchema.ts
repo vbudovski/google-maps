@@ -2,6 +2,9 @@ import { z } from 'zod';
 import { cellTowerSchema } from './cellTowerSchema';
 import { wiFiAccessPointSchema } from './wiFiAccessPointSchema';
 
+/**
+ * @description The request body must be formatted as JSON. The following fields are supported, and all fields are optional.
+ */
 export const geolocationRequestSchema = z
     .object({
         homeMobileCountryCode: z.number().describe("The cell tower's Mobile Country Code (MCC).").optional(),

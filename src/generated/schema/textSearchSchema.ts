@@ -373,12 +373,10 @@ export const textSearchQueryParamsSchema = z.object({
         )
         .optional(),
 });
-
 /**
  * @description 200 OK
  */
 export const textSearch200Schema = z.lazy(() => placesTextSearchResponseSchema);
-
 /**
  * @description 200 OK
  */

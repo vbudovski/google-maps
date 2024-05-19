@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+/**
+ * @description An object containing Unix time, a time zone, and its formatted text representation.
+ */
 export const timeZoneTextValueObjectSchema = z
     .object({
         text: z.string().describe('The time specified as a string in the time zone.'),

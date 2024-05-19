@@ -399,12 +399,10 @@ export const directionsQueryParamsSchema = z.object({
         )
         .optional(),
 });
-
 /**
  * @description 200 OK
  */
 export const directions200Schema = z.lazy(() => directionsResponseSchema);
-
 /**
  * @description 200 OK
  */

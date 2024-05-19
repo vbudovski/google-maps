@@ -15,8 +15,5 @@ export const directionsTransitLineSchema = z.object({
     text_color: z.string().describe('The color commonly used in signage for this line.').optional(),
     url: z.string().describe('Contains the URL for this transit line as provided by the transit agency.').optional(),
     icon: z.string().describe('Contains the URL for the icon associated with this line.').optional(),
-    vehicle: z
-        .lazy(() => directionsTransitVehicleSchema)
-        .describe('The type of vehicle that operates on this transit line.')
-        .optional(),
+    vehicle: z.lazy(() => directionsTransitVehicleSchema).optional(),
 });

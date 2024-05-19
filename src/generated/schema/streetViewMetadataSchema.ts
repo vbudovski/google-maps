@@ -59,12 +59,10 @@ export const streetViewMetadataQueryParamsSchema = z
             .optional(),
     })
     .optional();
-
 /**
  * @description 200 OK
  */
 export const streetViewMetadata200Schema = z.lazy(() => streetViewResponseSchema);
-
 /**
  * @description 200 OK
  */

@@ -7,6 +7,9 @@ import { placePhotoSchema } from './placePhotoSchema';
 import { placeReviewSchema } from './placeReviewSchema';
 import { plusCodeSchema } from './plusCodeSchema';
 
+/**
+ * @description Attributes describing a place. Not all attributes will be available for all place types.
+ */
 export const placeSchema = z
     .object({
         address_components: z
@@ -26,23 +29,13 @@ export const placeSchema = z
             )
             .optional(),
         curbside_pickup: z.boolean().describe('Specifies if the business supports curbside pickup.').optional(),
-        current_opening_hours: z
-            .lazy(() => placeOpeningHoursSchema)
-            .describe(
-                'Contains the hours of operation for the next seven days (including today). The time period starts at midnight on the date of the request and ends at 11:59 pm six days later. This field includes the `special_days` subfield of all hours, set for dates that have exceptional hours.'
-            )
-            .optional(),
+        current_opening_hours: z.lazy(() => placeOpeningHoursSchema).optional(),
         delivery: z.boolean().describe('Specifies if the business supports delivery.').optional(),
         dine_in: z
             .boolean()
             .describe('Specifies if the business supports indoor or outdoor seating options.')
             .optional(),
-        editorial_summary: z
-            .lazy(() => placeEditorialSummarySchema)
-            .describe(
-                'Contains a summary of the place. A summary is comprised of a textual overview, and also includes the language code for these if applicable. Summary text must be presented as-is and can not be modified or altered.'
-            )
-            .optional(),
+        editorial_summary: z.lazy(() => placeEditorialSummarySchema).optional(),
         formatted_address: z
             .string()
             .describe(
@@ -55,10 +48,7 @@ export const placeSchema = z
                 "Contains the place's phone number in its [local format](http://en.wikipedia.org/wiki/Local_conventions_for_writing_telephone_numbers)."
             )
             .optional(),
-        geometry: z
-            .lazy(() => geometrySchema)
-            .describe('Contains the location and viewport for the location.')
-            .optional(),
+        geometry: z.lazy(() => geometrySchema).optional(),
         icon: z
             .string()
             .describe(
@@ -85,10 +75,7 @@ export const placeSchema = z
                 'Contains the human-readable name for the returned result. For `establishment` results, this is usually the canonicalized business name.'
             )
             .optional(),
-        opening_hours: z
-            .lazy(() => placeOpeningHoursSchema)
-            .describe('Contains the regular hours of operation.')
-            .optional(),
+        opening_hours: z.lazy(() => placeOpeningHoursSchema).optional(),
         permanently_closed: z
             .boolean()
             .describe('Use `business_status` to get the operational status of businesses.')
@@ -105,12 +92,7 @@ export const placeSchema = z
                 'A textual identifier that uniquely identifies a place. To retrieve information about the place, pass this identifier in the `place_id` field of a Places API request. For more information about place IDs, see the [place ID overview](https://developers.google.com/maps/documentation/places/web-service/place-id).'
             )
             .optional(),
-        plus_code: z
-            .lazy(() => plusCodeSchema)
-            .describe(
-                'An encoded location reference, derived from latitude and longitude coordinates, that represents an area: 1/8000th of a degree by 1/8000th of a degree (about 14m x 14m at the equator) or smaller. Plus codes can be used as a replacement for street addresses in places where they do not exist (where buildings are not numbered or streets are not named). See [Open Location Code](https://en.wikipedia.org/wiki/Open_Location_Code) and [plus codes](https://plus.codes/).\n'
-            )
-            .optional(),
+        plus_code: z.lazy(() => plusCodeSchema).optional(),
         price_level: z
             .number()
             .describe(
@@ -137,12 +119,7 @@ export const placeSchema = z
         serves_vegetarian_food: z.boolean().describe('Specifies if the place serves vegetarian food.').optional(),
         serves_wine: z.boolean().describe('Specifies if the place serves wine.').optional(),
         scope: z.string().optional(),
-        secondary_opening_hours: z
-            .lazy(() => placeOpeningHoursSchema)
-            .describe(
-                "Contains an array of entries for the next seven days including information about secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the `type` subfield, which draws from a predefined list of opening hours types (such as `DRIVE_THROUGH`, `PICKUP`, or `TAKEOUT`) based on the types of the place. This field includes the `special_days` subfield of all hours, set for dates that have exceptional hours."
-            )
-            .optional(),
+        secondary_opening_hours: z.lazy(() => placeOpeningHoursSchema).optional(),
         takeout: z.boolean().describe('Specifies if the business supports takeout.').optional(),
         types: z
             .array(z.string())

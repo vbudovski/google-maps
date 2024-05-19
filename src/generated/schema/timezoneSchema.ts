@@ -74,12 +74,10 @@ export const timezoneQueryParamsSchema = z.object({
             'The desired time as seconds since midnight, January 1, 1970 UTC. The Time Zone API uses the `timestamp` to determine whether or not Daylight Savings should be applied, based on the time zone of the `location`. \n\nNote that the API does not take historical time zones into account. That is, if you specify a past timestamp, the API does not take into account the possibility that the location was previously in a different time zone.\n'
         ),
 });
-
 /**
  * @description 200 OK
  */
 export const timezone200Schema = z.lazy(() => timeZoneResponseSchema);
-
 /**
  * @description 200 OK
  */

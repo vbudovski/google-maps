@@ -16,11 +16,7 @@ export const distanceMatrixResponseSchema = z.object({
     rows: z
         .array(z.lazy(() => distanceMatrixRowSchema))
         .describe('An array of elements, which in turn each contain a `status`, `duration`, and `distance` element.'),
-    status: z
-        .lazy(() => distanceMatrixStatusSchema)
-        .describe(
-            'Contains the status of the request, and may contain debugging information to help you track down why the request failed.'
-        ),
+    status: z.lazy(() => distanceMatrixStatusSchema),
     error_message: z
         .string()
         .describe(

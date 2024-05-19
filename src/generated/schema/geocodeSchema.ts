@@ -10,12 +10,7 @@ export const geocodeQueryParamsSchema = z
                 'The street address or plus code that you want to geocode. Specify addresses in accordance with the format used by the national postal service of the country concerned. Additional address elements such as business names and unit, suite or floor numbers should be avoided. Street address elements should be delimited by spaces (shown here as url-escaped to `%20`):\n\n```\naddress=24%20Sussex%20Drive%20Ottawa%20ON\n```\n\nFormat plus codes as shown here (plus signs are url-escaped to `%2B` and spaces are url-escaped to `%20`):\n- global code is a 4 character area code and 6 character or longer local code (`849VCWC8+R9` is `849VCWC8%2BR9`).\n- compound code is a 6 character or longer local code with an explicit location (`CWC8+R9 Mountain View, CA, USA` is `CWC8%2BR9%20Mountain%20View%20CA%20USA`).\n\n<div class="note">Note: At least one of `address` or `components` is required.</div>'
             )
             .optional(),
-        bounds: z
-            .lazy(() => latLngArrayStringSchema)
-            .describe(
-                'The bounding box of the viewport within which to bias geocode results more prominently. This parameter will only influence, not fully restrict, results from the geocoder.'
-            )
-            .optional(),
+        bounds: z.lazy(() => latLngArrayStringSchema).optional(),
         components: z
             .array(z.string())
             .describe(
@@ -397,12 +392,10 @@ export const geocodeQueryParamsSchema = z
             .optional(),
     })
     .optional();
-
 /**
  * @description 200 OK
  */
 export const geocode200Schema = z.lazy(() => geocodingResponseSchema);
-
 /**
  * @description 200 OK
  */

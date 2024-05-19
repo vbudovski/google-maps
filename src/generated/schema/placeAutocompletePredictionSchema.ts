@@ -21,11 +21,7 @@ export const placeAutocompletePredictionSchema = z.object({
         )
         .optional(),
     reference: z.string().describe('See place_id.').optional(),
-    structured_formatting: z
-        .lazy(() => placeAutocompleteStructuredFormatSchema)
-        .describe(
-            'Provides pre-formatted text that can be shown in your autocomplete results. This content is meant to be read as-is. Do not programmatically parse the formatted address.'
-        ),
+    structured_formatting: z.lazy(() => placeAutocompleteStructuredFormatSchema),
     terms: z
         .array(z.lazy(() => placeAutocompleteTermSchema))
         .describe(

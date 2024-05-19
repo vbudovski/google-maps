@@ -2,6 +2,9 @@ import { z } from 'zod';
 import { placeOpeningHoursPeriodSchema } from './placeOpeningHoursPeriodSchema';
 import { placeSpecialDaySchema } from './placeSpecialDaySchema';
 
+/**
+ * @description An object describing the opening hours of a place.
+ */
 export const placeOpeningHoursSchema = z
     .object({
         open_now: z

@@ -6,11 +6,7 @@ export const placesQueryAutocompleteResponseSchema = z.object({
     predictions: z
         .array(z.lazy(() => placeAutocompletePredictionSchema))
         .describe('Contains an array of predictions.\n'),
-    status: z
-        .lazy(() => placesAutocompleteStatusSchema)
-        .describe(
-            'Contains the status of the request, and may contain debugging information to help you track down why the request failed.'
-        ),
+    status: z.lazy(() => placesAutocompleteStatusSchema),
     error_message: z
         .string()
         .describe(

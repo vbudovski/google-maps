@@ -4,6 +4,9 @@ import { directionsLegSchema } from './directionsLegSchema';
 import { directionsPolylineSchema } from './directionsPolylineSchema';
 import { fareSchema } from './fareSchema';
 
+/**
+ * @description Routes consist of nested `legs` and `steps`.
+ */
 export const directionsRouteSchema = z
     .object({
         legs: z
@@ -11,7 +14,7 @@ export const directionsRouteSchema = z
             .describe(
                 'An array which contains information about a leg of the route, between two locations within the given route. A separate leg will be present for each waypoint or destination specified. (A route with no waypoints will contain exactly one leg within the legs array.) Each leg consists of a series of steps.'
             ),
-        bounds: z.lazy(() => boundsSchema).describe('Contains the viewport bounding box of the `overview_polyline`.'),
+        bounds: z.lazy(() => boundsSchema),
         copyrights: z
             .string()
             .describe(
@@ -32,16 +35,7 @@ export const directionsRouteSchema = z
             .describe(
                 'Contains an array of warnings to be displayed when showing these directions. You must handle and display these warnings yourself.'
             ),
-        overview_polyline: z
-            .lazy(() => directionsPolylineSchema)
-            .describe(
-                'Contains an object that holds an encoded polyline representation of the route. This polyline is an approximate (smoothed) path of the resulting directions.'
-            ),
-        fare: z
-            .lazy(() => fareSchema)
-            .describe(
-                'If present, contains the total fare (that is, the total ticket costs) on this route. This property is only returned for transit requests and only for routes where fare information is available for all transit legs.'
-            )
-            .optional(),
+        overview_polyline: z.lazy(() => directionsPolylineSchema),
+        fare: z.lazy(() => fareSchema).optional(),
     })
     .describe('Routes consist of nested `legs` and `steps`.');

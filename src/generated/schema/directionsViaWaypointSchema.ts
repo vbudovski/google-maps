@@ -2,10 +2,7 @@ import { z } from 'zod';
 import { latLngLiteralSchema } from './latLngLiteralSchema';
 
 export const directionsViaWaypointSchema = z.object({
-    location: z
-        .lazy(() => latLngLiteralSchema)
-        .describe('The location of the waypoint.')
-        .optional(),
+    location: z.lazy(() => latLngLiteralSchema).optional(),
     step_index: z.number().describe('The index of the step containing the waypoint.').optional(),
     step_interpolation: z
         .number()

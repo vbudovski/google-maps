@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+/**
+ * @description A review of the place submitted by a user.
+ */
 export const placeReviewSchema = z
     .object({
         author_name: z

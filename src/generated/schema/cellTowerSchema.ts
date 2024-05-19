@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+/**
+ * @description Attributes used to describe a cell tower. The following optional fields are not currently used, but may be included if values are available: `age`, `signalStrength`, `timingAdvance`.
+ */
 export const cellTowerSchema = z
     .object({
         cellId: z

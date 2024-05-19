@@ -392,12 +392,10 @@ export const autocompleteQueryParamsSchema = z.object({
         )
         .optional(),
 });
-
 /**
  * @description 200 OK
  */
 export const autocomplete200Schema = z.lazy(() => placesAutocompleteResponseSchema);
-
 /**
  * @description 200 OK
  */

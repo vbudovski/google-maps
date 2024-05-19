@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+/**
+ * @description A photo of a Place. The photo can be accesed via the [Place Photo](https://developers.google.com/places/web-service/photos) API using an url in the following pattern:\n\n```\nhttps://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=photo_reference&key=YOUR_API_KEY\n```\n\nSee [Place Photos](https://developers.google.com/places/web-service/photos) for more information.\n
+ */
 export const placePhotoSchema = z
     .object({
         height: z.number().describe('The height of the photo.'),
@@ -30,12 +33,10 @@ export const placePhotoQueryParamsSchema = z.object({
         )
         .optional(),
 });
-
 /**
  * @description 200 OK
  */
 export const placePhoto200Schema = z.string();
-
 /**
  * @description 200 OK
  */

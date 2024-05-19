@@ -61,12 +61,10 @@ export const streetViewQueryParamsSchema = z.object({
         )
         .optional(),
 });
-
 /**
  * @description 200 OK
  */
 export const streetView200Schema = z.string();
-
 /**
  * @description 200 OK
  */
