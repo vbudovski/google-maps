@@ -1,5 +1,11 @@
 # @vbudovski/google-maps
 
+## 0.3.1
+
+### Patch Changes
+
+- adc9d33: Add keywords for package
+
 ## 0.3.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@vbudovski/google-maps",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A TypeScript-typed and runtime-validated Google Maps Platform API.",
   "keywords": [
     "Google",
